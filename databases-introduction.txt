@@ -1,0 +1,95 @@
+Exercises
+
+Create a new repository on GitHub to hold your assignments for the Databases module. Create a new branch for Checkpoint 1. Submit your answers.
+
+1. What data types do each of these values represent?
+
+1. "A Clockwork Orange"
+2. 42
+3. 09/02/1945
+4. 98.7
+5. $15.99
+
+A:
+1. String
+2. Integer
+3. Date
+4. Float
+5. Currency
+
+2. Explain when a database would be used. Explain when a text file would be used.
+
+A: A database would be used for data that needs to be accessed from multiple sources. Such as a list of usernames and passwords for a website. Using a database, the usernames and passwords could be at anytime accessed by multiple users. Using a text file for this purpose could create a problem because the computer could lock access to the file after the first user logged on. A text file would be used when only one source needs to write to the file at a time. A piece of software local to your computer may write user configuration information to a text file. This only needs to be accessed by the current user of the computer so no read write conflicts will arise.
+
+3. Describe one difference between SQL and other programming languages.
+
+A: SQL is a declarative rather than a procedural programming language. With this type of programming the focus is on what you want to happen rather than how you get there. SQL will figure out the steps needed to return the information requested.
+
+4. In your own words, explain how the pieces of a database system fit together at a high level.
+
+A: A database is a method of storing and retrieving information. At the most basic level, a database contains a place in which to store data, a way to retrieve that data, and a way to add to that data. The data is then displayed to the user using a grid structure.
+
+5. Explain the meaning of table, row, column, and value.
+
+A: A table is a collection of data that is arranged in rows, columns and cells. The columns read up and down not unlike a column on the Parthenon. Each column usually contains a header that describes the type of data in the column. A row reads from left to right and intersect with the columns. These intersections create the cells where the values are stored. The values are the data contained within the cells. The can be of any data type that the database permits. 
+
+6. List three data types that can be used in a table.
+
+1. String or Character
+2. Date or Time
+3. Integer or Number
+
+7. Given this payments table, provide an English description of the following queries and include their results:
+
+     SELECT date, amount
+     FROM payments;
+
+A: This query will output the date and the amount columns from the payments table.
+
+“date”		“amount”
+'2016-05-01',	1500.00
+'2016-05-10',	37.00
+'2016-05-15',	124.93
+'2016-05-23',	54.72
+
+     SELECT amount
+     FROM payments
+     WHERE amount > 500;
+
+A: This query will output the amount column from the payments table where the amount is greater than 500.
+
+“amount”
+1500.00
+
+     SELECT *
+     FROM payments
+     WHERE payee = 'Mega Foods';
+
+A: This query will output all of the columns from the payments table where the payee is Mega Foods.
+
+“date”		“payee”	“amount”	“memo”
+'2016-05-15',	'Mega Foods',	124.93,	'Groceries'
+
+8. Given this users table, write SQL queries using the following criteria and include the output:
+
+* The email and sign-up date for the user named DeAndre Data.
+
+A: 
+SELECT email, signup
+FROM users
+WHERE name = ‘DeAndre Data’;
+
+* The user ID for the user with email 'aleesia.algorithm@uw.edu'.
+
+A:
+SELECT userid
+FROM users
+WHERE email = ‘aleesia.algorithm@uw.edu’;
+
+* All the columns for the user ID equal to 4.
+
+A:
+SELECT *
+FROM users
+WHERE userid = 4;
+
