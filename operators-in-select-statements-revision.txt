@@ -1,0 +1,34 @@
+
+6. List each comparison operator and explain when you would use it. Include a real world example for each.
+* If you can’t list these from memory, do these flashcards until you can!
+A:
+  1. = - equal to
+	Recipe, 1cup in the recipe must = 1cup in real life.
+  2. > - greater than
+	Age, Age must be > 12 to ride the big rides at the fair.
+  3. < - less than
+	Age, Age must be < 12 to attend summer camp.
+  4. != - not equal to
+	Money, if bank != 0, buy some milk.
+  5. >= - greater than or equal to
+	Age, Age >= 21 to purchase alcohol.
+  6. <= - less than or equal to
+	Age, Age <= 20 to attend most public highschools.
+  7. <> - not equal to (greater than or less than)
+	Money, change machine only accepts five dollar bills. If money in your wallet <> five dollar bill, no change.
+  8. LIKE - pattern match a string (contains)
+	Books, Looking for a book in the library about bears, title contains the word bear (LIKE bear).
+  9. BETWEEN - between two values
+	Age, Age must be BETWEEN 18 and 35 to be in the key television demographic.
+  10. IS DISTINCT FROM - two values differ from one another (should be used in place of <> when one of the inputs could be null.)
+	Books, choosing a book about bears, IS DISTINCT FROM books about lions or tigers.
+  11. IS TRUE / IS FALSE - returns true or false (determines whether the expression is true or false)
+	Car trip, Checking to see if the gas is full (TRUE), you can make the trip. If it is not full (FALSE), go to the gas station.
+  12. IS NULL - determines if the expression is NULL
+	Groceries, checking to see if the milk is empty (NULL), if empty, buy more milk.
+  13. AND - joins two expressions (both must be true in order to return result)
+	Recipe, If you have flour AND yeast, you can make bread.
+  14. OR - of two expressions only one needs to return true to return result
+	Recipe, If you have milk OR milk substitute, you can make bread.
+  15. NOT - expression must return false to return result
+	Recipe, If the milk is NOT spoiled, you can make bread.
