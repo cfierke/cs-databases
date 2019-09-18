@@ -1,0 +1,118 @@
+Exercises
+Answer the following questions and submit the responses.
+
+1. Write out a generic SELECT statement.
+
+A:
+SELECT column1, column2
+  FROM table
+  WHERE id = ‘row1’
+
+2. Create a fun way to remember the order of operations in a SELECT statement, such as a mnemonic.
+
+A: Stephen  Fry  Wanders
+
+3. Given this dogs table, write queries to select the following pieces of data:
+
+* Display the name, gender, and age of all dogs that are part Labrador.
+A:
+SELECT name, gender, age 
+  FROM dogs 
+  WHERE breed LIKE '%labrador%';
+
+* Display the ids of all dogs that are under 1 year old.
+A:
+SELECT id
+  FROM dogs
+  WHERE age < 1;
+
+* Display the name and age of all dogs that are female and over 35lbs.
+A:
+SELECT name, age
+  FROM dogs
+  WHERE gender = 'F' AND weight > 35;
+
+* Display all of the information about all dogs that are not Shepherd mixes.
+A:
+SELECT *
+  FROM dogs
+  WHERE breed NOT LIKE '%shepherd%';
+
+* Display the id, age, weight, and breed of all dogs that are either over 60lbs or Great Danes.
+A:
+SELECT id, age, weight, breed
+  FROM dogs
+  WHERE weight > 60 OR breed LIKE '%great dane%';
+
+4. Given this cats table, what records are returned from these queries?
+
+*SELECT name, adoption_date FROM cats;
+A:
+ 'Mushi', '2016-03-22'
+ 'Seashell', NULL
+ 'Azul', '2016-04-17'
+ 'Victoire', '2016-09-01'
+ 'Nala', NULL
+
+*SELECT name, age FROM cats;
+A:
+'Mushi', 1
+'Seashell', 7
+'Azul', 3
+'Victoire', 7
+'Nala', 1
+
+5. From the cats table, write queries to select the following pieces of data.
+*Display all the information about all of the available cats.
+A:
+SELECT *
+  FROM cats;
+
+*Display the name and sex of all cats who are 7 years old.
+A:
+SELECT name, gender
+  FROM cats
+  WHERE age = 7;
+
+*Find all of the names of the cats, so you don’t choose duplicate names for new cats.
+A:
+SELECT name
+  FROM cats;
+
+6. List each comparison operator and explain when you would use it. Include a real world example for each.
+* If you can’t list these from memory, do these flashcards until you can!
+A:
+  1. = - equal to
+  2. > - greater than
+  3. < - less than
+  4. != - not equal to
+  5. >= - greater than or equal to
+  6. <= - less than or equal to
+  7. <> - not equal to (greater than or less than)
+  8. LIKE - pattern match a string (contains)
+  9. BETWEEN - between two values
+  10. IS DISTINCT FROM - two values differ from one another (should be used in place of <> when one of the inputs could be null.)
+  11. IS TRUE / IS FALSE - returns true or false (determines whether the expression is true or false)
+  12. IS NULL - determines if the expression is NULL
+  13. AND - joins two expressions (both must be true in order to return result)
+  14. OR - of two expressions only one needs to return true to return result
+  15. NOT - expression must return false to return result
+
+7. From the cats table, what data is returned from these queries?
+
+* SELECT name FROM cats WHERE gender = ‘F’;
+A:
+'Seashell'
+'Nala'
+
+* SELECT name FROM cats WHERE age <> 3;
+A:
+'Mushi'
+'Seashell'
+'Victoire'
+'Nala'
+
+* SELECT ID FROM cats WHERE name != 'Mushi' AND gender = 'M';
+A:
+3
+4
