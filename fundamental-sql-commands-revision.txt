@@ -1,0 +1,74 @@
+4.
+* Write a command that creates the table to track the wedding dinner.
+A:
+CREATE TABLE wedding (
+  name text,
+  rsvp boolean,
+  guests integer,
+  meals numeric(2, 1)
+);
+
+* The guests will need a place to sit at the reception, so write a command that adds a column for table number.
+A:
+ALTER TABLE wedding
+  ADD COLUMN tablenumber integer;
+
+
+5. Write a command to create a new table to hold the books in a library with the columns ISBN, title, author, genre, publishing date, number of copies, and available copies.
+
+A:
+CREATE TABLE library (
+  isbn bigint,
+  title text,
+  author text,
+  genre text,
+  publishingdate date,
+  copies integer,
+  available integer
+);
+
+* Find three books and add their information to the table.
+A:
+INSERT INTO library (isbn, title, author, genre, publishingdate, copies, available) 
+  VALUES 
+  (9780531002469, 'Mythology', 'Edith Hamilton', 'Greek Literature', '1968-06-01', 2, 1),
+  (9780316769501, 'Nine Stories', 'J.D. Salinger', 'Classic Literature & Fiction', '1991-05-01', 5, 3),
+  (9781613820483, 'The Metamorphosis', 'Franz Kafka', 'Classic Literature & Fiction', '2011-05-19', 3, 1);
+
+
+6. Write a command to make a new table to hold spacecrafts. Information should include id, name, year launched, country of origin, a brief description of the mission, orbiting body, if it is currently operating, and its approximate miles from Earth. In addition to the table creation, provide commands that perform the following operations:
+
+A:
+CREATE TABLE spacecraft (
+  id integer,
+  name text,
+  launched date,
+  country text,
+  mission text,
+  orbit text,
+  operating boolean,
+  distance float
+);
+
+
+7. Write a command to create a new table to hold the emails in your inbox. This table should include an id, the subject line, the sender, any additional recipients, the body of the email, the timestamp, whether or not you have read the email, and the id of the email chain it's in. Also provide commands that perform the following operations:
+
+A:
+CREATE TABLE inbox (
+  id integer,
+  subject text,
+  sender text,
+  addrecipients text,
+  body text,
+  received timestamp,
+  read boolean,
+  chain integer
+);
+
+* Add three new emails to the inbox.
+A:
+INSERT INTO inbox (id, subject, sender, addrecipients, body, received, read, chain)
+  VALUES
+  (2112, 'Free Stuff', 'Bad Guy21@email.com', 'Other@email.com', 'Here is some free stuff that will give you malware!', '2019-09-17 11:32:09', false, 21),
+  (2113, 'Order Sent', 'eztailShop@email.com', 'etailrecords@email.com', 'Your order has been sent', '2019-09-17 13:03:54', true, 54),
+  (2114, 'Pick me up?', 'friend@email.com', 'Otherfriend@email.com', 'Can you pick me up after work?', '2019-09-17 16:59:59', true, 79);
