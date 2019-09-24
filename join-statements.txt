@@ -1,0 +1,160 @@
+Exercises
+Submit your answers to the following questions.
+
+NOTE: Real-world examples must be your own and not based on the text or previous assignments.
+
+1. How do you find related data held in two separate data tables?
+
+A: You can find related data in two separate data tables using a JOIN statement.
+
+2. Explain, in your own words, the difference between an INNER JOIN, LEFT OUTER JOIN, and RIGHT OUTER JOIN. Give a real-world example for each.
+
+A: An inner join takes two tables and outputs the chosen column(s) based on a primary key in one table and a corresponding foreign key in the second. The output is restricted to the column(s) that match both the foriegn and primary keys.
+
+A real world example of the use of an inner join is:
+A voter database and a candidate database. The voter database contains name, address, and the candidate_id they voted for. The candidate database contains condidate_id, name and party. To get a list of who each voter voted for you would use and inner join to get information from each table and combine it in the output.
+
+SELECT voter.name, candidate.name
+  FROM voter
+  JOIN candidate
+  ON voter.candidate_id = candidate.candidate_id;
+
+A left outer join also takes two tables and outputs the chosen column(s) based on a primary key in one table and a corresponding foreign key in the second. However, the output includes all of the chosen column(s) in the first (left) table, including those that do not meet the primary key = foriegn key criteria, as well as the column(s) that match both the foriegn and primary keys.
+
+A real world example of the use of left outer join is:
+Using the same voter and candidate tables above you can retrieve the voter name and who they voted for using a left outer join even if the voter did not vote (i.e. the value of candidate_id = NULL).
+
+SELECT voter.name, candidate.name
+  FROM voter
+  LEFT OUTER JOIN candidate
+  ON voter.candidate_id = candidate.candidate_id;
+
+A right outer join output includes all of the chosen column(s) in the second (right) table, including those that do not meet the primary key = foriegn key criteria, as well as the column(s) that match both the foriegn and primary keys.
+
+A real world example of the use of right outer join is two databases, one concerning customer information and another listing the products on hand.
+The customer database contains customer_id, name, address. The second database contains the customer_id of purchaser, type and price. To get an output of the products that includes products purchased by the customers products that have not been ordered yet (customer_id of purchaser = NULL, a right outer join is needed.  
+
+SELECT customer.name, products.type
+  FROM customer
+  RIGHT OUTER JOIN products
+  ON customer.customer_id = products.customer_id; 
+
+3. Define primary key and foreign key. Give a real-world example for each.
+
+A: A primary key is a unique value that is used to identify rows within a table. A foreign key is used to identify rows within a separate table. The two are combined within a join statement to identify which rows to output.
+
+A real world example of the use of a primary key and a foreign key is querying two databases at a school: 
+One containing information on coaches called coach, including the columns school_id, name and tenure. One on practice times for different sports called practice, including the columns coach_id, sport, practice_times. To check on a certain coach to see which sports they practice you would use the primary key from the coach table and match it to the foreign key in the practice times table (coach.school_id = practice.coach.id).
+
+SELECT coach.name, practice.sport
+  FROM coach
+  JOIN practice
+  ON coach.school_id = practice.coach.id;
+
+4. Define aliasing.
+
+A: Aliasing is creating an alias or variable for table names in a statement that can be called on within the statement.
+
+5. Change this query so that you are using aliasing:
+SELECT professor.name, compensation.salary,
+compensation.vacation_days FROM professor JOIN
+compensation ON professor.id =
+compensation.professor_id;
+
+A:
+SELECT p.name, c.salary, c.vacation_days
+  FROM professor AS p
+  JOIN compensation AS c
+  ON p.id = c.professor_id;
+
+6. Why would you use a NATURAL JOIN? Give a real-world example.
+
+A: If two databases share the same column names, a natural join will return the information within the column(s) with the same name without having to query each individual column.
+
+A real world example of the use of a natural join is two databases at a movie theater:
+One containing information about movies that are currently playing including name, premiere_date, rating, length, gross. One containing information about all the past movies that have played this year including name, premiere_date, rating, length, gross. To get an output of all the movies to date including the currently playing movies you would use a natural join to join the two databases. Because all of the columns are the same, a natural join will join the databases without the user having to input each column one at a time.
+
+7. Using this Employee schema and data, write queries to find the following information:
+
+* List all employees and all shifts.
+
+A:
+SELECT employees.name, scheduled_shifts.shift_id
+  FROM employees
+  JOIN scheduled_shifts
+  ON employees.id = scheduled_shifts.employee_id;
+
+8. Using this Adoption schema and data, please write queries to retrieve the following information and include the results:
+
+* Create a list of all volunteers. If the volunteer is fostering a dog, include each dog as well.
+A:
+SELECT volunteers.first_name, volunteers.last_name, dogs.name
+  FROM volunteers
+  LEFT OUTER JOIN dogs
+  ON volunteers.foster_dog_id = dogs.id;  
+
+* The cat's name, adopter's name, and adopted date for each cat adopted within the past month to be displayed as part of the "Happy Tail" social media promotion which posts recent successful adoptions.
+A:
+SELECT cats.name, cat_adoptions.date, adopters.first_name, adopters.last_name
+  FROM cats
+  INNER JOIN cat_adoptions
+  ON cats.id = cat_adoptions.cat_id
+  INNER JOIN adopters
+  ON cat_adoptions.adopter_id = adopters.id 
+  WHERE cat_adoptions.date >= (current_date-30);
+
+* Create a list of adopters who have not yet chosen a dog to adopt.
+A:
+SELECT adopters.first_name, adopters.last_name
+  FROM adopters
+  LEFT OUTER JOIN dog_adoptions
+  ON adopters.id = dog_adoptions.adopter_id
+  WHERE dog_adoptions.adopter_id is NULL;
+
+* Lists of all cats and all dogs who have not been adopted.
+A:
+SELECT cats.name
+  FROM cats
+  LEFT JOIN cat_adoptions 
+  ON cat_adoptions.cat_id = cats.id
+  WHERE cat_adoptions.adopter_id is NULL
+  UNION 
+  SELECT dogs.name
+  FROM dogs
+  LEFT JOIN dog_adoptions
+  ON dog_adoptions.dog_id = dogs.id
+  WHERE dog_adoptions.adopter_id is NULL;
+
+* The name of the person who adopted Rosco.
+A:
+SELECT adopters.first_name, adopters.last_name
+  FROM adopters 
+  JOIN dog_adoptions
+  ON adopters.id = dog_adoptions.adopter_id
+  JOIN dogs
+  ON dog_adoptions.dog_id = dogs.id
+  WHERE dogs.name = 'Rosco';
+
+9. Using this Library schema and data, write queries applying the following scenarios and include the results:
+
+* To determine if the library should buy more copies of a given book, please provide the names and position, in order, of all of the patrons with a hold (request for a book with all copies checked out) on "Advanced Potion-Making".
+A:
+SELECT patrons.name, books.title
+  FROM holds
+  JOIN patrons 
+  ON patrons.id = holds.patron_id
+  JOIN books 
+  ON books.isbn = holds.isbn
+  WHERE books.title = 'Advanced Potion-Making'
+  ORDER BY patrons.name;
+
+* List all of the library patrons. If they have one or more books checked out, list the books with the patrons.
+A:
+SELECT patrons.name, books.title
+  FROM transactions
+  JOIN patrons
+  ON patrons.id = transactions.patron_id
+  JOIN books
+  ON books.isbn = transactions.isbn
+  WHERE transactions.checked_in_date is NULL;
+
