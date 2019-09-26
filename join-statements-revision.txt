@@ -1,0 +1,12 @@
+9. Using this Library schema and data, write queries applying the following scenarios and include the results:
+
+* List all of the library patrons. If they have one or more books checked out, list the books with the patrons.
+A:
+SELECT patrons.name, books.title 
+  FROM transactions 
+  RIGHT JOIN patrons 
+  ON transactions.patron_id = patrons.id 
+  LEFT JOIN books 
+  ON transactions.isbn = books.isbn 
+  AND transactions.checked_in_date IS NULL
+  ORDER BY patrons.name;
